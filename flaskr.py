@@ -32,19 +32,19 @@ mongo = PyMongo(app, config_prefix='MONGO2')
 #main page
 @app.route('/')
 def show_entries():
-	detail_list = [i for i in mongo.db.snack.find().limit(3)]
+	detail_list = [i for i in mongo.db.snack.find().limit(10)]
 	return render_template('index.html',detail=detail_list)
  
 #detail page
 @app.route('/snackdetail/<string:snack_name>')
 def detail_page(snack_name):
-	snack=mongo.db.detail.find_one({"snack_name":snack_name})
+	snack=mongo.db.detail.find_one({"snack_name": snack_name})
 	return render_template('single_page.html',snack=snack)
 
 #manufacturer page
 @app.route('/manufacturer/<string:manufacturer>')
 def manufacturer_search(manufacturer):
-	searchResult=[i for i in mongo.db.detail.find({}).limit(10)]
+	searchResult=[i for i in mongo.db.snack.find({"manufacturer":manufacturer}).limit(10)]
 	return render_template('index.html', searchResult=searchResult)
 
 # #board2 page

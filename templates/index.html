@@ -24,7 +24,7 @@
 
 
         <div class="search-form">
-            <form ><input type="text" value="과자명을 입력하세요..."></form>
+            <form ><input type="text" value=""></form>
         </div>
 
         <div class="search-bar">
@@ -54,6 +54,31 @@
             <ul id="tiles" >
                 <!-- These are our grid blocks -->
                 
+                <!-- If a user click manufacturer -->
+                {% if searchResult is defined %}
+                    
+                        {% for detail in searchResult %}
+                        <li>
+                        <img src="{{url_for('static',filename='images/img2.png')}}" href="{{url_for('detail_page',snack_name=detail["snack_name"])}}" width="200" height="200">
+                        <div class="post-info">
+                            <div class="post-basic-info">
+                                <h3><a href="{{url_for('detail_page',snack_name=detail["snack_name"])}}">{{detail["snack_name"]}}</a></h3>
+                                <span><a href="{{url_for('manufacturer_search',manufacturer=detail["manufacturer"])}}"><label></label>{{detail["manufacturer"]}}</a></span>
+                            </div>
+                            <div class="post-info-rate-share">
+                                <div class="rateit">
+                                    <span> </span>
+                                </div>
+                    
+                                <div class="clear"> </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+                {% endif%}
+                    
+                <!-- default detail list -->   
                 {% for detail in detail %}
                 <li>
                     <img src="{{url_for('static',filename='images/img2.png')}}" href="{{url_for('detail_page',snack_name=detail["snack_name"])}}" width="200" height="200">

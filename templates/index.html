@@ -15,11 +15,11 @@
     <div id="header">
         <a class="navicon" href="#menu-left"> </a>
         <div class="logo">
-            <a href="http://localhost:8880/index.html"><img src="{{url_for('static', filename='images/spa.png')}}"  alt="" /></a>
+            <a href="{{url_for('show_entries')}}"><img src="{{url_for('static', filename='images/spa.png')}}"  alt="" /></a>
         </div>
 
         <div class="my">
-            <a href="http://localhost:8880/page_my.html" ><span></span></a>
+            <a href="{{url_for('show_entries')}}" ><span></span></a>
         </div>
 
 
@@ -28,7 +28,7 @@
         </div>
 
         <div class="search-bar">
-            <a href="http://localhost:8880/page_search.html"><span></span></a>
+            <a href="{{url_for('show_entries')}}"><span></span></a>
         </div>
 
 
@@ -39,8 +39,8 @@
     <nav id="menu-left">
         <ul>
             <li><a href="{{url_for('show_entries')}}"><span>홈</span></a></li>
-            <li><a href="#"><span>성분사전</span></a></li>
-            <li><a href="#"><span>스파</span></a></li>
+            <li><a href="{{url_for('show_entries')}}"><span>성분사전</span></a></li>
+            <li><a href="{{url_for('show_entries')}}"><span>스파</span></a></li>
             <div class="clear"> </div>
         </ul>
     </nav>
@@ -84,8 +84,8 @@
 
     <!---//End-content---->
     <div class= "buttonhouse">
-        <div><button type="button" class="button" value="버튼5" ><a href="#" ><span>스낵파인더 추천하기</span></a></button></div>
-        <div><button type="button" class="button" value="버튼6" ><a href="#" ><span>스낵파인더 평가하기</span></a></button></div>
+        <div><button type="button" class="button" value="버튼5" ><a href="{{url_for('show_entries')}}" ><span>스낵파인더 추천하기</span></a></button></div>
+        <div><button type="button" class="button" value="버튼6" ><a href="{{url_for('show_entries')}}" ><span>스낵파인더 평가하기</span></a></button></div>
     </div>
 </div>
 <!----wookmark-scripts---->

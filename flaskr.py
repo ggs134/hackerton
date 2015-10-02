@@ -40,7 +40,7 @@ def show_entries():
 @app.route('/snackdetail/<string:snack_name>')
 def detail_page(snack_name):
 	snack=mongo.db.deail.find_one({"snack_name":snack_name})
-	render_template('single-page.html',snack_name=snack_name)
+	render_template('single_page.html',snack=snack)
 
 #manufacturer page
 @app.route('/manufacturer/<string:manufacturer>')

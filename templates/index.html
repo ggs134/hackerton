@@ -54,10 +54,9 @@
             <ul id="tiles" >
                 <!-- These are our grid blocks -->
                 
-
                 {% for detail in detail %}
                 <li>
-                    <img src="{{url_for('static',filename='images/img2.png')}}" href="{{url_for('show_entries')}}" width="200" height="200">
+                    <img src="{{url_for('static',filename='images/img2.png')}}" href="{{url_for('detail_page',snack_name=detail["snack_name"])}}" width="200" height="200">
                     <div class="post-info">
                         <div class="post-basic-info">
                             <h3><a href="{{url_for('detail_page',snack_name=detail["snack_name"])}}">{{detail["snack_name"]}}</a></h3>

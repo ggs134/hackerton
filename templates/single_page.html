@@ -7,15 +7,8 @@
 		<link rel="shortcut icon" type="image/x-icon" href="url_for('static',filename='images/fav-icon.png')" />
 		<!----webfonts---->
 		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800" rel="stylesheet" type="text/css">
-		<!----//webfonts---->
 		<!-- Global CSS for the page and tiles -->
   		<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
-  		<!-- //Global CSS for the page and tiles -->
-		<!---start-click-drop-down-menu----->
-		<script src="http://localhost/js/jquery.min.js"></script>
-		<!-----mobile-menu----->
-		<link type="text/css" rel="stylesheet" href="http://localhost/css/jquery.mmenu.all.css" />
-		<script type="text/javascript" src="http://localhost/js/jquery.mmenu.js"></script>
 
 
 	</head>
@@ -66,8 +59,16 @@
 						<p>
 							<ul>
 								{% for i in snack["ingredient"] %}
-									<li>{{i["ing_name"]}}</li>
+									<li><a href="{{url_for('detail_page2',snack_name=snack["snack_name"],palm=i["ing_name"])}}">{{i["ing_name"]}}</a></li>
 								{% endfor %}
+							</ul>
+						</p>
+					
+						<p>name : 
+							<ul>
+								{% for i,j in palm%}
+								<li>{{i}}:{{j}}</li>
+								{% endfor%}
 							</ul>
 						</p>
 
@@ -112,7 +113,7 @@
 		</div>
 		<!----start-footer--->
 		<div class="footer">
-			<p>balkineun-aedeul</p>
+			<p></p>
 		</div>
 		<!----//End-footer--->
 		<!---//End-wrap---->

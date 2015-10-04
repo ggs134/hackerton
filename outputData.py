@@ -9,16 +9,14 @@ import requests
 import json
 import sys
 
+#몽고 관련 설정
 client = MongoClient()
 db = client.snack
 Fighting = db.result
 wordcount=db.wordcount
 
-def main():
-    findAndInsert('protein')
 
-
-
+#파라미터 : api로부터 검색할 단어    
 def findAndInsert(word):
     
     if word is None:
@@ -32,7 +30,7 @@ def findAndInsert(word):
     listToMongo(absList, word)
 
 
-
+# 파라미터 : 추출된 단어의 배열, 몽고에 입력할 성분명
 def  listToMongo(arr, ing_name):
     string_dict = {}
 
@@ -55,18 +53,11 @@ def  listToMongo(arr, ing_name):
     item=string_dict.items()
     sortedList=sorted(item, key=itemgetter(1), reverse=True)
     
-    #print ifWordCount(sortedList, "bad")
-    #insertMongo(string_dict, ing_name)
-    
-    #print sortedList 
-    #print
-    #print
-    print sortedList[0:30]
-    #print
-    print "갯수 : "+str(len(sortedList))
-    #print
-    #Fighting.insert(string_dict)
+    #몽고에 입력
+    insertMongo(string_dict, ing_name)
 
+
+#전달받은 url을 배열로 비꿔줌
 def xmlURLToList(passedURL):
     
     dic={}
@@ -82,7 +73,9 @@ def xmlURLToList(passedURL):
 
     return res
 
-
+#입력받은 딕셔너리를 name이라는 키를 붙여서 몽고에 삽입
+#입력 예시 
+#{"ing_name" : name , "contents"  : ... }
 def insertMongo(dic, name):
     doc = {}
     doc["ing_name"] = str(name)
@@ -91,6 +84,7 @@ def insertMongo(dic, name):
     return "Insert Success!"
 
 
+#정렬된 결과에서 word의 숫자를 세어 주는 모듈
 def ifWordCount(sortedList, word):
     count=0
     for a in sortedList:
@@ -98,10 +92,8 @@ def ifWordCount(sortedList, word):
             return a[1]
     return "No Such Word"
 
+#텍스트 필터링, 전달받은 단어에서 불필요한 부분을 제거
 def stripWord(word):
+    # (),:;.!@#$%^&*()_+=-0987654321 를 단어에서 제거함
     stripedword = word.strip(' (),:;.!@#$%^&*()_+=-0987654321')
     return stripedword
-
-
-if __name__=="__main__":
-    main()

@@ -1,4 +1,2 @@
-해커톤 첫번째 커밋
-
-index.html
-single-page.html작업중
+10/3~10/4 해커톤 참가작
+snack finder
